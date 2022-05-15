@@ -14,8 +14,18 @@ const getDiagnosisPrice = (request, response) => {
       }
       response.status(200).json(results.rows)
     })
-  }
+}
+
+const getDiagnosisList = (request, response) => {
+  pool.query('select icd19_code from diagnosis', (error, results) => {
+    if (error) {
+      throw error
+    }
+    response.status(200).json(results.rows)
+  })
+}
 
   module.exports = {
-      getDiagnosisPrice
+      getDiagnosisPrice,
+      getDiagnosisList
   }

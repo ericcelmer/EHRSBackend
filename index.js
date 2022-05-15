@@ -9,6 +9,10 @@ app.use(
     extended: true,
   })
 )
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  next();
+});
 app.get('/', (request, response) => {
     response.json({ info: 'Node.js, Express, and Postgres API' })
 })
@@ -18,3 +22,4 @@ app.listen(port, () => {
 
 const db = require('./queries')
 app.get('/DiagnosisPrice', db.getDiagnosisPrice)
+app.get('/DiagnosisList', db.getDiagnosisList)
