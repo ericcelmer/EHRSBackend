@@ -54,10 +54,21 @@ const addOrder = (request, response) => {
   })
 }
 
+const updateVisitSummary = (request, response) => {
+  const {visit_summary, newStatus, doctor_id, status} = request.body
+  pool.query("UPDATE visit SET visit_summary = $1, status = $2 WHERE doctor_id = $3 AND status = $4", [visit_summary, newStatus, doctor_id, status], (error, results) => {
+    if (error) {
+      throw error
+    }
+    response.status(200).send()
+  })
+}
+
   module.exports = {
       getDiagnosisPrice,
       getDiagnosisList,
       getDoctorID,
       getNurseID,
-      addOrder
+      addOrder,
+      updateVisitSummary
   }

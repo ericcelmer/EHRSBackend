@@ -12,6 +12,7 @@ app.use(
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', '*');
+  res.header('Access-Control-Allow-Methods', '*');
   next();
 });
 app.get('/', (request, response) => {
@@ -32,3 +33,4 @@ app.get('/DiagnosisList', db.getDiagnosisList)
 app.get('/doctorID', db.getDoctorID)
 app.get('/nurseID', db.getNurseID)
 app.post('/order', db.addOrder)
+app.put('/updateVisitSummary', db.updateVisitSummary)
